@@ -1,0 +1,111 @@
+{
+  "@context": {
+    "@language": "en",
+    "@vocab": "https://schema.org/",
+    "cr": "http://mlcommons.org/croissant/",
+    "rai": "http://mlcommons.org/croissant/RAI/",
+    "sc": "https://schema.org/",
+    "prov": "http://www.w3.org/ns/prov#",
+    "dct": "http://purl.org/dc/terms/"
+  },
+  "@type": "Dataset",
+  "name": "RigidBench-v3.1",
+  "description": "RigidBench v3.1 is a controlled adversarial benchmark for evaluating referential invariance under semantic pressure in large language models. It comprises 140 structured evaluation items across 5 task families and 8 semantic-relation types, designed to test whether models preserve referent identity when surrounding context is semantically loaded in favor of a different entity. Each item includes a proper noun, a semantically related lure, a phonologically similar neighbor, calibrated pressure levels (low/mid/high), and complete prompt text. Benchmark items were produced via a mixed workflow: some author-written and some machine-generated drafts that were reviewed and edited by the authors.",
+  "license": "https://creativecommons.org/licenses/by/4.0/",
+  "url": "https://anonymous.4open.science/r/rigid-bench-2026-C5B7",
+  "version": "3.1",
+  "datePublished": "2026-05-04",
+  "creator": {
+    "@type": "Organization",
+    "name": "Anonymous Authors",
+    "url": "https://anonymous.4open.science/r/rigid-bench-2026-C5B7"
+  },
+  "distribution": [
+    {
+      "@type": "cr:FileObject",
+      "name": "benchmark-items",
+      "description": "Core benchmark dataset: 140 structured evaluation items in JSONL format. Each record contains item metadata (triple_id, family, relation type, pressure level, proper noun, semantic lure, phonological neighbor, prompt text, and similarity/distance metrics).",
+      "contentUrl": "https://anonymous.4open.science/r/rigid-bench-2026-C5B7/benchmark_items.jsonl",
+      "encodingFormat": "application/jsonlines+json",
+      "sha256": "d97eee1c31cf513687e44d95af0df275bc7e15f4e35651d5831452068bdbf4d1",
+      "size": {
+        "@type": "QuantitativeValue",
+        "value": "140",
+        "unitText": "records"
+      },
+      "@id": "benchmark-items"
+    },
+    {
+      "@type": "cr:FileObject",
+      "name": "model-results",
+      "description": "Experimental results: completions from 9 frontier and open-weight language models (Kimi K2-P6, Gemini 2.5 Pro, Gemini 2.5 Flash, Claude Sonnet 4.6, DeepSeek V4-Pro, GPT-5.5, Llama 4 Scout, GPT-OSS 120B, Grok 4.3) run on the full benchmark. Each record includes the benchmark item, model identifier, raw completion, and deterministic regex-based outcome classification.",
+      "contentUrl": "https://anonymous.4open.science/r/rigid-bench-2026-C5B7/results/",
+      "encodingFormat": "application/jsonlines+json",
+      "size": {
+        "@type": "QuantitativeValue",
+        "value": "1260",
+        "unitText": "records (140 items x 9 models)"
+      },
+      "@id": "model-results",
+      "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+    },
+    {
+      "@type": "cr:FileObject",
+      "name": "evaluation-harness",
+      "description": "Python evaluation harness for running RigidBench against new models and reproducing the paper's analysis. Includes outcome classification, metric computation, and statistical tests.",
+      "contentUrl": "https://anonymous.4open.science/r/rigid-bench-2026-C5B7/run_all.py",
+      "encodingFormat": "text/x-python",
+      "@id": "evaluation-harness",
+      "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+    },
+    {
+      "@type": "cr:FileObject",
+      "name": "analysis-script",
+      "description": "Python analysis script for computing SSR, PSR, RDR, IPR, per-family breakdowns, relation vulnerability analysis, and statistical tests from results JSONL files.",
+      "contentUrl": "https://anonymous.4open.science/r/rigid-bench-2026-C5B7/analyze_results.py",
+      "encodingFormat": "text/x-python",
+      "@id": "analysis-script",
+      "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+    }
+  ],
+  "recordSet": [
+    {
+      "@type": "cr:RecordSet",
+      "name": "benchmark-items",
+      "description": "Core benchmark items with structured metadata",
+      "field": [
+        {
+          "@type": "cr:Field",
+          "name": "triple_id",
+          "description": "Unique identifier for the benchmark item (e.g., RB3-A-021-low)",
+          "dataType": "sc:Text",
+          "@id": "benchmark-items/triple_id",
+          "source": {
+            "fileObject": {
+              "@id": "benchmark-items"
+            },
+            "extract": {
+              "column": "triple_id"
+            }
+          }
+        }
+      ],
+      "@id": "benchmark-items-recordset"
+    }
+  ],
+  "cr:fileObject": [
+    {
+      "@type": "cr:FileObject",
+      "name": "benchmark-items-file",
+      "contentUrl": "benchmark_items.jsonl",
+      "encodingFormat": "application/jsonlines+json",
+      "includes": "benchmark-items"
+    }
+  ],
+  "rai:dataCollection": "Benchmark items were produced via a mixed workflow: some were created directly by the authors, and some were generated as drafts and then reviewed, edited, and curated by the authors. No human subjects were recruited, no private records were collected, and no web scraping was performed. Item construction used RigidBench seed triples and v3.1 design templates: selecting proper nouns and semantic lures, constructing phonological neighbors, assigning relation families and pressure operators, writing prompts at low/mid/high pressure where applicable, and registering expected outputs or clarify/abstain targets. The construction period for the released v3.1 snapshot was April-May 2026. The language scope is English; there is no geographic sampling frame because records are synthetic prompts rather than observations from a population.",
+  "rai:personalSensitiveInformation": "This dataset does not include personal records, contact details, identifiers, or other sensitive personal data. Proper names in prompts may coincide with real-world names, but they are used as benchmark stimuli rather than as records about identifiable individuals. No private or confidential source material is included.",
+  "conformsTo": "http://mlcommons.org/croissant/1.1",
+  "dct:conformsTo": "http://mlcommons.org/croissant/1.0",
+  "rai:hasSyntheticData": true,
+  "cr:citeAs": "Anonymous NeurIPS 2026 submission: RigidBench v3.1 (to be replaced with camera-ready citation)."
+}
