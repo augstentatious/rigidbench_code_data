@@ -1,0 +1,27 @@
+{
+  "package": "RigidBench v3.1 anonymous code and data package",
+  "created_for": "NeurIPS 2026 anonymous submission supplement",
+  "results": "results/<model>/rigidbench_v3_results.jsonl",
+  "models": [
+    "claude_sonnet_46",
+    "deepseek_v4",
+    "gemini_25_flash",
+    "gemini_25_pro",
+    "gpt_55",
+    "gpt_oss_120b",
+    "grok_43",
+    "kimi_k2p6",
+    "llama4_scout"
+  ],
+  "expected_counts": {
+    "rows": 1260,
+    "SEM_SUB": 107,
+    "PHO_SUB": 0
+  },
+  "primary_reproduction_commands": [
+    "python paper_stats.py",
+    "python bootstrap_rdr.py",
+    "python mixed_effects.py",
+    "python scorer_audit.py --max-discrepancies 25"
+  ]
+}
