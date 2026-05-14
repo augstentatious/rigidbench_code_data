@@ -2,6 +2,8 @@
 
 Benchmark and evaluation harness for **referential invariance under semantic pressure** in large language models.
 
+This repository contains the code, benchmark items, and pre-computed model outputs for the RigidBench v3.1 paper artifact. Reproducing the reported aggregate statistics does **not** require API keys; API credentials are only needed when running the benchmark against a new model.
+
 RigidBench tests whether language models preserve referent identity when surrounding context is semantically loaded in favor of a different entity. It produces two key metrics:
 
 - **SSR** (semantic substitution rate): fraction of completions where the model substitutes a semantically related name
